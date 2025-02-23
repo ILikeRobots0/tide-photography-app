@@ -1,5 +1,5 @@
 // Fetch tide data from Open-Meteo API
-fetch("https://api.open-meteo.com/v1/marine?latitude=1.3521&longitude=103.8198&hourly=tide_height")
+fetch("https://open-meteo.com/en/docs/marine-weather-api#latitude=1.2897&longitude=103.8501&hourly=sea_level_height_msl&daily")
     .then(response => response.json())
     .then(data => {
         // Check if tide data is available
