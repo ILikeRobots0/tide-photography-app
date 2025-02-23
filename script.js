@@ -16,7 +16,6 @@ fetch("https://api.open-meteo.com/v1/marine?latitude=1.3521&longitude=103.8198&h
         console.error("Error fetching tide data:", error);
     });
 
-
 // Fetch weather data from OpenWeatherMap API
 fetch("https://api.openweathermap.org/data/2.5/weather?q=Singapore&appid=fc9e1c7e12a9c55818835123c36da39a&units=metric")
     .then(response => response.json())
