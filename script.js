@@ -7,8 +7,13 @@ fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.2897&longitude=103
         // Check if tide data is available
         if (data && data.hourly && data.hourly.sea_level_height_msl) {
             const tideData = data.hourly.sea_level_height_msl[0];  // Get the first tide data
+            if (tideData = 1){
+                document.getElementById("tide-info").innerText = 
+                `Next High Tide: ${tideData} meter`;
+            }else{
             document.getElementById("tide-info").innerText = 
                 `Next High Tide: ${tideData} meters`;
+            }
         } else {
             document.getElementById("tide-info").innerText = "Tide data not available";
         }
