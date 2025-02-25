@@ -32,11 +32,11 @@ function fetchData() {
             document.getElementById("weather-info").innerText = "Error fetching weather data";
             console.error("Error fetching weather data:", error);
         });
+}
 
-    // Update the last updated time
+// Update the last updated time
     const now = new Date();
     lastUpdated.innerText = `Last updated: ${now.toLocaleTimeString()}`;
-}
 
 // Run fetchData() on page load
 fetchData();
