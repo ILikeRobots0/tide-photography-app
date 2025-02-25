@@ -27,4 +27,21 @@ p {
 /* Add spacing between elements */
 #tide-info, #weather-info {
     margin-top: 10px;
+
+/* Refresh button */
+    button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+    
 }
