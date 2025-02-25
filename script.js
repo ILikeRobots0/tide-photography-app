@@ -1,14 +1,22 @@
 // Ensure the script runs only after the page loads
-window.onload = function () {
+document.addEventListener("DOMContentLoaded", function () {
     fetchData(); // Fetch data on page load
-};
+});
 
 function fetchData() {
-    // Update timestamp
+    // Get the elements safely
+    const tideInfo = document.getElementById("tide-info");
+    const weatherInfo = document.getElementById("weather-info");
     const lastUpdated = document.getElementById("last-updated");
-    if (lastUpdated) {
-        lastUpdated.innerText = "Last updated: Fetching...";
+
+    // Check if elements exist before modifying them
+    if (!tideInfo || !weatherInfo || !lastUpdated) {
+        console.error("One or more elements are missing in the HTML!");
+        return; // Stop the function to avoid errors
     }
+
+    // Update timestamp
+    lastUpdated.innerText = "Last updated: Fetching...";
 
     // Fetch tide data from Open-Meteo API
     fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.2897&longitude=103.8501&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
@@ -18,13 +26,13 @@ function fetchData() {
 
             if (data && data.hourly && data.hourly.sea_level_height_msl) {
                 const tideData = data.hourly.sea_level_height_msl[0];  
-                document.getElementById("tide-info").innerText = `Next High Tide: ${tideData} meter(s)`;
+                tideInfo.innerText = `Next High Tide: ${tideData} meter(s)`;
             } else {
-                document.getElementById("tide-info").innerText = "Tide data is not available right now";
+                tideInfo.innerText = "Tide data is not available right now";
             }
         })
         .catch(error => {
-            document.getElementById("tide-info").innerText = "Error while fetching tide data";
+            tideInfo.innerText = "Error while fetching tide data";
             console.error("Error fetching tide data:", error);
         });
 
@@ -32,17 +40,14 @@ function fetchData() {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=Singapore&appid=fc9e1c7e12a9c55818835123c36da39a&units=metric")
         .then(response => response.json())
         .then(data => {
-            document.getElementById("weather-info").innerText = 
-                `Weather: ${data.weather[0].description}, Temp: ${data.main.temp}°C`;
+            weatherInfo.innerText = `Weather: ${data.weather[0].description}, Temp: ${data.main.temp}°C`;
         })
         .catch(error => {
-            document.getElementById("weather-info").innerText = "Error fetching weather data";
+            weatherInfo.innerText = "Error fetching weather data";
             console.error("Error fetching weather data:", error);
         });
 
     // Update the last updated time
     const now = new Date();
-    if (lastUpdated) {
-        lastUpdated.innerText = `Last updated: ${now.toLocaleTimeString()}`;
-    }
+    lastUpdated.innerText = `Last updated: ${now.toLocaleTimeString()}`;
 }
