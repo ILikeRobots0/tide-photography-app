@@ -1,13 +1,20 @@
+// Ensure the script runs only after the page loads
+window.onload = function () {
+    fetchData(); // Fetch data on page load
+};
+
 function fetchData() {
     // Update timestamp
     const lastUpdated = document.getElementById("last-updated");
-    lastUpdated.innerText = "Last updated: Fetching...";
+    if (lastUpdated) {
+        lastUpdated.innerText = "Last updated: Fetching...";
+    }
 
     // Fetch tide data from Open-Meteo API
     fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.2897&longitude=103.8501&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Log the full response to check the structure
+            console.log(data); // Log data to check structure
 
             if (data && data.hourly && data.hourly.sea_level_height_msl) {
                 const tideData = data.hourly.sea_level_height_msl[0];  
@@ -32,11 +39,10 @@ function fetchData() {
             document.getElementById("weather-info").innerText = "Error fetching weather data";
             console.error("Error fetching weather data:", error);
         });
-}
 
-// Update the last updated time
+    // Update the last updated time
     const now = new Date();
-    lastUpdated.innerText = `Last updated: ${now.toLocaleTimeString()}`;
-
-// Run fetchData() on page load
-fetchData();
+    if (lastUpdated) {
+        lastUpdated.innerText = `Last updated: ${now.toLocaleTimeString()}`;
+    }
+}
