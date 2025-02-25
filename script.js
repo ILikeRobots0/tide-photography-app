@@ -9,8 +9,7 @@ fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.2897&longitude=103
             const tideData = data.hourly.sea_level_height_msl[0];  // Get the first tide data
             document.getElementById("tide-info").innerText = 
                 `Next High Tide: ${tideData} meter(s)`;
-            }
-        } else {
+            } else {
             document.getElementById("tide-info").innerText = "Tide data is not available right now";
         }
     })
