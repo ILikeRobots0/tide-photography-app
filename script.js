@@ -1,10 +1,12 @@
-// Fetch tide data from Open-Meteo API
-fetch("https://open-meteo.com/en/docs/marine-weather-api#latitude=1.2897&longitude=103.8501&hourly=sea_level_height_msl&daily")
+// Fetch tide (sea level height) data from Open-Meteo API
+fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.2897&longitude=103.8501&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
     .then(response => response.json())
     .then(data => {
+        console.log(data); // Log the full response to check the structure
+
         // Check if tide data is available
-        if (data && data.hourly && data.hourly.tide_height) {
-            const tideData = data.hourly.tide_height[0];  // Get the first tide data
+        if (data && data.hourly && data.hourly.sea_level_height_msl) {
+            const tideData = data.hourly.sea_level_height_msl[0];  // Get the first tide data
             document.getElementById("tide-info").innerText = 
                 `Next High Tide: ${tideData} meters`;
         } else {
