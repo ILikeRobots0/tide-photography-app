@@ -2,14 +2,14 @@
 header {
     background-color: #f0f5fc; 
     color: white; 
-    padding: 20px 0; 
+    padding: 10px 0; 
     font-size: 24px; 
     font-family: Verdana, sans-serif; 
     width: 100vw; 
     position: fixed; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
     top: 0;
-    
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);    
 }
 
 /* Apply a clean and modern font */
