@@ -1,3 +1,15 @@
+/* Header for the top of the page */
+header {
+    background-color: #0077cc; /* Blue background */
+    color: white; /* White text */
+    text-align: center; /* Center text */
+    padding: 20px 0; /* Top and bottom padding */
+    font-size: 24px; /* Larger font */
+    font-family: Arial, sans-serif; /* Clean font */
+    width: 100%; /* Full width */
+    position: relative; /* Keeps it in normal flow */
+}
+
 /* Apply a clean and modern font */
 body {
     font-family: Arial, sans-serif;
