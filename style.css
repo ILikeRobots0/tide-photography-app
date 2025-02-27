@@ -1,13 +1,13 @@
 /* Header for the top of the page */
 header {
-    background-color: #0077cc; /* Blue background */
-    color: white; /* White text */
-    text-align: center; /* Center text */
-    padding: 20px 0; /* Top and bottom padding */
-    font-size: 24px; /* Larger font */
-    font-family: Arial, sans-serif; /* Clean font */
-    width: 100%; /* Full width */
-    position: relative; /* Keeps it in normal flow */
+    background-color: #0077cc; 
+    color: white; 
+    padding: 20px 0; 
+    font-size: 24px; 
+    font-family: Arial, sans-serif; 
+    width: 100%; 
+    position: relative; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 
 /* Apply a clean and modern font */
@@ -39,6 +39,7 @@ p {
 /* Add spacing between elements */
 #tide-info, #weather-info {
     margin-top: 10px;
+}
 
 /* Refresh button */
 button {
@@ -54,6 +55,4 @@ button {
 
 button:hover {
     background-color: #0056b3;
-}
-    
 }
