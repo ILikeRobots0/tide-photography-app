@@ -1,10 +1,10 @@
 /* Header for the top of the page */
 header {
-    background-color: #0077cc; 
+    background-color: #f0f5fc; 
     color: white; 
     padding: 20px 0; 
     font-size: 24px; 
-    font-family: Arial, sans-serif; 
+    font-family: Verdana, sans-serif; 
     width: 100%; 
     position: relative; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
