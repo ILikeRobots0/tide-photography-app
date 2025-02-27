@@ -2,7 +2,7 @@
 header {
     background-color: #f0f5fc; 
     color: white; 
-    padding: 20px 0; 
+    padding: 0px 0; 
     font-size: 24px; 
     font-family: Verdana, sans-serif; 
     width: 100%; 
@@ -55,4 +55,13 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+footer {   
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#999;
 }
