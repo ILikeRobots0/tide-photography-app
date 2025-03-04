@@ -8,8 +8,7 @@ header {
     width: 100vw; 
     position: fixed; 
     top: 0;
-    left: 0;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);    
+    left: 0;  
 }
 
 /* Apply a clean and modern font */
@@ -58,7 +57,7 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-/*skibidi"/
+
 footer {   
    position:fixed;
    left:0px;
