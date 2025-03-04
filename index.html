@@ -6,27 +6,27 @@
     <title>Tide & Photography App</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<header>
-    <h1>Your go to place for the best days :)</h1>    
-</header>
-    
 <body>
+
+    <header>
+        <h1>Coastal Photography Conditions</h1>
+    </header>
+
     <div class="container">
-        <div class="left-side">
-            <h1>Coastal Photography Conditions</h1>
+        <div class="text-section">
             <p id="tide-info">Loading tide data...</p>
             <p id="weather-info">Loading weather data...</p>
-            <p id="last-updated">Last updated: --</p>
+            <button onclick="fetchData()">Refresh</button>
         </div>
-        <div class="right-side">
-            <img src="https://drive.google.com/uc?export=view&id=10jsuvndjoBvRY7Phb_dVKWTBpcFUpAgu" alt="Ocean picture by Ms Nicole Yung">
+        <div class="image-section">
+            <img src="https://your-image-url-here.jpg" alt="Coastal View">
         </div>
     </div>
-    <script src="script.js" defer></script> 
-</body>
 
-<footer>
-     <button onclick="fetchData()">Refresh Data</button>  
-    <script src="script.js" defer></script> 
-</footer>
+    <footer>
+        Last updated: <span id="last-updated">Just now</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body> 
 </html>
