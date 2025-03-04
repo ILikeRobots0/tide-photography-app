@@ -1,4 +1,4 @@
-/* Header - Fixed at the Top */
+/* Header */
 header {
     background-color: #f0f5fc;  
     color: #333; 
@@ -32,13 +32,13 @@ body {
     padding: 20px;
 }
 
-/* Left Section - Text */
+/* Left Section */
 .text-section {
     width: 50%;
     text-align: left;
 }
 
-/* Right Section - Image */
+/* Right Section */
 .image-section {
     width: 50%;
     text-align: center;
