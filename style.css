@@ -75,7 +75,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: 2px;
+    padding: 4px 6px;
 }
 
 button:hover {
