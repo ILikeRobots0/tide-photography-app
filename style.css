@@ -39,11 +39,12 @@ body {
 /* Left Section */
 .text-section {
     width: 30%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centers text */
     align-items: center;
-    background: white;
+    background-color: white;
 }
 
 /* Right Section */
