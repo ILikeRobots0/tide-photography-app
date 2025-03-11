@@ -34,26 +34,22 @@ body {
 
 /* Left Section */
 .text-section {
-    width: 50%;
+    width: 35%;
     text-align: left;
 }
 
 /* Right Section */
 .image-section {
-    width: 65%;
+    width: 65%;  
     text-align: center;
 }
 
+/* Make the image bigger */
 .image-section img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-/* Style Headings */
-h1 {
-    color: #333;
-    font-size: 28px;
+    width: 100%; 
+    max-width: 600px;  
+    height: auto;  
+    border-radius: 5px; 
 }
 
 /* Style Information Paragraphs */
