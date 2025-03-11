@@ -28,7 +28,6 @@ body {
 /* Content Wrapper */
 .container {
     display: flex;
-    justify-content: space-between; 
     align-items: center;
     max-width: 90%;
     margin: auto;
