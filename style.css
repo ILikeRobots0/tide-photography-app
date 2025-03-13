@@ -86,7 +86,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    padding: 4px 6px;
+    padding: 8px 10px;
 }
 
 button:hover {
@@ -103,6 +103,8 @@ footer {
     background: #333;
     color: #ffffff;
     display: flex;
-    align-items: center; 
+    align-items: center;
     gap: 15px;
+    flex-direction: row;
+    justify-content: space-around;
 }
