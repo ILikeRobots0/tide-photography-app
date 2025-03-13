@@ -19,7 +19,7 @@ function fetchData() {
     lastUpdated.innerText = "Last updated: Fetching...";
 
     // Fetch tide data from Open-Meteo API
-    fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.2897&longitude=103.8501&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
+    fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.438&longitude=103.7888&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
         .then(response => response.json())
         .then(data => {
             console.log(data); // Log data to check structure
