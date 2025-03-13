@@ -36,7 +36,7 @@ function fetchData() {
             console.error("Error fetching tide data:", error);
         });
 
-    // Fetch weather data from OpenWeatherMap API  (updated to central woodlands because i love woodlands)
+    // Fetch weather data from OpenWeatherMap API  (updated to central woodlands)
     fetch("https://api.openweathermap.org/data/2.5/weather?lat=1.4363&lon=103.7867&appid=fc9e1c7e12a9c55818835123c36da39a&units=metric")
         .then(response => response.json())
         .then(data => {
