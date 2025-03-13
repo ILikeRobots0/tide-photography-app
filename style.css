@@ -28,7 +28,7 @@ body {
     margin: 0;
     padding: 80px 20px 50px;
     text-align: center;
-    background-color: #f4f4f4;
+    background-color: #9bc5cc;
 }
 
 /* Content Wrapper */
@@ -44,7 +44,7 @@ body {
 
 /* Left Section */
 .text-section {
-    width: 30%;
+    width: 35%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -54,7 +54,7 @@ body {
 
 /* Right Section */
 .image-section {
-    width: 70%;  
+    width: 65%;  
     text-align: center;
 }
 
