@@ -93,15 +93,15 @@ button:hover {
 }
 
 /* Footer stuff, thing at bottom */
-footer {   
+footer {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 50px;
+    height: 60px;
     width: 100%;
     background: #333;
-    color: white;
-    text-align: center;
-    line-height: 20px;
-    padding: 10px 0;
+    color: #ffffff;
+    display: flex;
+    align-items: center; 
+    gap: 15px;
 }
