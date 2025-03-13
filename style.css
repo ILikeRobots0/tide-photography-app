@@ -105,13 +105,3 @@ footer {
     line-height: 20px;
     padding: 10px 0;
 }
-
-footer a {
-    color: #ffcc00; /* Yellowish color for contrast */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer a:hover {
-    text-decoration: underline;
-}
