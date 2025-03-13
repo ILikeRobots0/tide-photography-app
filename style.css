@@ -18,7 +18,7 @@ h1 {
 
 h2 {
     color: #000000;
-    font-size: 24px;
+    font-size: 50px;
     font-family: 'Croissant One', cursive;
 }
 
@@ -104,7 +104,7 @@ footer {
     color: #ffffff;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 15px; /* TEST */
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-around; /* TEST */
 }
