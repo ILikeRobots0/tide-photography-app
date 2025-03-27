@@ -54,11 +54,11 @@ body {
 .location {
     font-size: 18px;
     font-weight: bold;
-    color: #0a9c1c;
+    color: #3bdf4f;
     margin-top: -10px;
     margin-bottom: 10px;
-    background: #70cad9;
-    border-radius: 4px;
+    background: #a1e2ed;
+    border-radius: 10px;
     font-family: 'Croissant One', cursive;
 }
 
