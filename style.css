@@ -54,9 +54,11 @@ body {
 .location {
     font-size: 18px;
     font-weight: bold;
-    color: #007BFF;
+    color: #14d22b;
     margin-top: -10px;
     margin-bottom: 10px;
+    background: #96d6e1;
+    border-radius: 4px;
 }
 
 /* Horizontal line styling */
