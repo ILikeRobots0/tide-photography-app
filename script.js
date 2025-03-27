@@ -7,53 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <header>
-        <h1>Your go to place for the best days :)</h1>
-    </header>
-
-    <div class="container">
-        <div class="text-section">
-            <h2>OceanBarrier</h2>
-            <p class="location">Woodlands, Singapore</p>
-            <hr>
-            <h3>Today's Coastal Area</h3>
-            <hr>
-
-            <!-- Data Section for Ocean & Weather -->
-            <div class="data-section">
-                <p id="tide-info">Loading tide data...</p>
-                <p id="weather-info">Loading weather data...</p>
-                <p id="wave-height">Loading wave height...</p>
-                <p id="sea-temp">Loading sea temperature...</p>
-                <p id="visibility">Loading visibility...</p>
-                <p id="wind-speed">Loading wind speed...</p>
-                <p id="cloud-cover">Loading cloud cover...</p>
-                <p id="sunrise">Loading sunrise...</p>
-                <p id="sunset">Loading sunset...</p>
-            </div>
-        </div>
-
-        <div class="image-section"> 
-            <img src="https://i.imgur.com/UrJYPLX.jpeg" alt="Ocean picture by Ms Nicole Yung">
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer-left">
-            <span id="last-updated">Just now</span>
-            <button onclick="fetchData()">Refresh</button>
-        </div>
-        <div class="footer-right">
-            <p>Data provided by  
-                <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> &  
-                <a href="https://openweathermap.org/" target="_blank">OpenWeather</a>
-            </p>
-        </div>
-    </footer>
-
-    <!-- Updated Script -->
     <script>
         // Ensure the script runs only after the page loads
         document.addEventListener("DOMContentLoaded", function () {
