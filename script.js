@@ -22,32 +22,27 @@ function fetchData() {
     fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.438&longitude=103.7888&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
         .then(response => response.json())
         .then(data => {
-            console.log(data); // Log data to check structure
-
-            if (data && data.hourly && data.hourly.sea_level_height_msl) {
-                const tideData = data.hourly.sea_level_height_msl[0];  
-                tideInfo.innerText = `Next High Tide: ${tideData} meter(s)`;
-            } else {
-                tideInfo.innerText = "Tide data is not available right now";
-            }
-        })
-        .catch(error => {
-            tideInfo.innerText = "Error while fetching tide data";
-            console.error("Error fetching tide data:", error);
-        });
-
-    // Fetch weather data from OpenWeatherMap API  (updated to central woodlands)
-    fetch("https://api.openweathermap.org/data/2.5/weather?lat=1.4363&lon=103.7867&appid=fc9e1c7e12a9c55818835123c36da39a&units=metric")
+            function fetchOceanStats() {
+    // Open-Meteo API for ocean conditions (Woodlands coordinates)
+    fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.4381&longitude=103.7864&hourly=wave_height,water_temperature,visibility,wind_speed,cloud_cover&timezone=Asia/Singapore")
         .then(response => response.json())
         .then(data => {
-            weatherInfo.innerText = `Weather: ${data.weather[0].description}, Temp: ${data.main.temp}°C`;
+            document.getElementById("wave-height").innerText = `Wave Height: ${data.hourly.wave_height[0]} meters`;
+            document.getElementById("sea-temp").innerText = `Sea Temperature: ${data.hourly.water_temperature[0]}°C`;
+            document.getElementById("visibility").innerText = `Visibility: ${data.hourly.visibility[0]} km`;
+            document.getElementById("wind-speed").innerText = `Wind Speed: ${data.hourly.wind_speed[0]} km/h`;
+            document.getElementById("cloud-cover").innerText = `Cloud Cover: ${data.hourly.cloud_cover[0]}%`;
         })
-        .catch(error => {
-            weatherInfo.innerText = "Error fetching weather data";
-            console.error("Error fetching weather data:", error);
-        });
+        .catch(error => console.error("Error fetching ocean data:", error));
 
-    // Update the last updated time
-    const now = new Date();
-    lastUpdated.innerText = `Last updated: ${now.toLocaleTimeString()}`;
+    // OpenWeatherMap API for sunrise, sunset, and moon phase (Replace 'YOUR_API_KEY' with your API key)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=Woodlands,SG&appid=YOUR_API_KEY&units=metric")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("sunrise").innerText = `Sunrise: ${new Date(data.sys.sunrise * 1000).toLocaleTimeString()}`;
+            document.getElementById("sunset").innerText = `Sunset: ${new Date(data.sys.sunset * 1000).toLocaleTimeString()}`;
+        });
 }
+
+// Call function on page load
+fetchOceanStats();
