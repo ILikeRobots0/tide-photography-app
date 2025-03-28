@@ -28,15 +28,15 @@ function fetchData() {
             console.error("Error fetching tide data:", error);
         });
 
-    // Fetch Ocean Stats from Open-Meteo
-    fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.4381&longitude=103.7864&hourly=wave_height,water_temperature,visibility,wind_speed,cloud_cover&timezone=Asia/Singapore")
+    // Fetch Ocean Stats from Open-Meteo (Using soil_temperature_0cm as a workaround for sea temperature)
+    fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.4381&longitude=103.7864&hourly=wave_height,visibility,wind_speed,cloud_cover,soil_temperature_0cm&cell_selection=sea&timezone=Asia/Singapore")
         .then(response => response.json())
         .then(data => {
             console.log("Ocean Data:", data); // Log API response for debugging
 
             // Check if data exists, else show "N/A"
             const waveHeight = data?.hourly?.wave_height?.[0] ?? "N/A";
-            const seaTemp = data?.hourly?.water_temperature?.[0] ?? "N/A";
+            const seaTemp = data?.hourly?.soil_temperature_0cm?.[0] ?? "N/A"; // Workaround for sea temp
             const visibility = data?.hourly?.visibility?.[0] ?? "N/A";
             const windSpeed = data?.hourly?.wind_speed?.[0] ?? "N/A";
             const cloudCover = data?.hourly?.cloud_cover?.[0] ?? "N/A";
