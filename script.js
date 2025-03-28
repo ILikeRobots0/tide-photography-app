@@ -1,67 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tide & Photography App</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Croissant+One&display=swap" rel="stylesheet">
-</head>
-    <script>
-        // Ensure the script runs only after the page loads
-        document.addEventListener("DOMContentLoaded", function () {
-            fetchData(); // Fetch data on page load
+// Ensure the script runs only after the page loads
+document.addEventListener("DOMContentLoaded", function () {
+    fetchData(); // Fetch data on page load
+});
+
+// Function to fetch both tide and weather data
+function fetchData() {
+    // Get elements safely
+    const tideInfo = document.getElementById("tide-info");
+    const weatherInfo = document.getElementById("weather-info");
+    const lastUpdated = document.getElementById("last-updated");
+
+    // Check if elements exist before modifying them
+    if (!tideInfo || !weatherInfo || !lastUpdated) {
+        console.error("One or more elements are missing in the HTML!");
+        return; // Stop function to avoid errors
+    }
+
+    // Update timestamp
+    lastUpdated.innerText = "Last updated: Fetching...";
+
+    // Fetch Tide Data from Open-Meteo API
+    fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.438&longitude=103.7888&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
+        .then(response => {
+            if (!response.ok) throw new Error(`Tide API Error: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Tide Data:", data); // Debugging
+            if (data?.hourly?.sea_level_height_msl) {
+                tideInfo.innerText = `Tide Level: ${data.hourly.sea_level_height_msl[0]} meters`;
+            } else {
+                tideInfo.innerText = "Tide data unavailable.";
+            }
+        })
+        .catch(error => {
+            tideInfo.innerText = "Failed to load tide data.";
+            console.error("Error fetching tide data:", error);
         });
 
-        // Function to fetch both tide and weather data
-        function fetchData() {
-            // Get elements safely
-            const tideInfo = document.getElementById("tide-info");
-            const weatherInfo = document.getElementById("weather-info");
-            const lastUpdated = document.getElementById("last-updated");
+    // Fetch Ocean Stats from Open-Meteo
+    fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.4381&longitude=103.7864&hourly=wave_height,water_temperature,visibility,wind_speed,cloud_cover&timezone=Asia/Singapore")
+        .then(response => {
+            if (!response.ok) throw new Error(`Ocean API Error: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Ocean Data:", data); // Debugging
 
-            // Check if elements exist before modifying them
-            if (!tideInfo || !weatherInfo || !lastUpdated) {
-                console.error("One or more elements are missing in the HTML!");
-                return; // Stop function to avoid errors
-            }
+            // Safe access to API data
+            const waveHeight = data?.hourly?.wave_height?.[0] ?? "N/A";
+            const seaTemp = data?.hourly?.water_temperature?.[0] ?? "N/A";
+            const visibility = data?.hourly?.visibility?.[0] ?? "N/A";
+            const windSpeed = data?.hourly?.wind_speed?.[0] ?? "N/A";
+            const cloudCover = data?.hourly?.cloud_cover?.[0] ?? "N/A";
 
-            // Update timestamp
-            lastUpdated.innerText = "Last updated: Fetching...";
+            document.getElementById("wave-height").innerText = `Wave Height: ${waveHeight} meters`;
+            document.getElementById("sea-temp").innerText = `Sea Temperature: ${seaTemp}°C`;
+            document.getElementById("visibility").innerText = `Visibility: ${visibility} km`;
+            document.getElementById("wind-speed").innerText = `Wind Speed: ${windSpeed} km/h`;
+            document.getElementById("cloud-cover").innerText = `Cloud Cover: ${cloudCover}%`;
+        })
+        .catch(error => {
+            document.getElementById("wave-height").innerText = "Failed to load ocean data.";
+            console.error("Error fetching ocean data:", error);
+        });
 
-            // Fetch Tide Data from Open-Meteo API
-            fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.438&longitude=103.7888&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
-                .then(response => response.json())
-                .then(data => {
-                    tideInfo.innerText = `Tide Level: ${data.hourly.sea_level_height_msl[0]} meters`;
-                })
-                .catch(error => console.error("Error fetching tide data:", error));
+    // Fetch Weather Data from OpenWeatherMap
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=Woodlands,SG&appid=fc9e1c7e12a9c55818835123c36da39a&units=metric")
+        .then(response => {
+            if (!response.ok) throw new Error(`Weather API Error: ${response.status}`);
+            return response.json();
+        })
+        .then(data => {
+            console.log("Weather Data:", data); // Debugging
 
-            // Fetch Ocean Stats from Open-Meteo
-            fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.4381&longitude=103.7864&hourly=wave_height,water_temperature,visibility,wind_speed,cloud_cover&timezone=Asia/Singapore")
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("wave-height").innerText = `Wave Height: ${data.hourly.wave_height[0]} meters`;
-                    document.getElementById("sea-temp").innerText = `Sea Temperature: ${data.hourly.water_temperature[0]}°C`;
-                    document.getElementById("visibility").innerText = `Visibility: ${data.hourly.visibility[0]} km`;
-                    document.getElementById("wind-speed").innerText = `Wind Speed: ${data.hourly.wind_speed[0]} km/h`;
-                    document.getElementById("cloud-cover").innerText = `Cloud Cover: ${data.hourly.cloud_cover[0]}%`;
-                })
-                .catch(error => console.error("Error fetching ocean data:", error));
+            document.getElementById("sunrise").innerText = `Sunrise: ${new Date(data.sys.sunrise * 1000).toLocaleTimeString()}`;
+            document.getElementById("sunset").innerText = `Sunset: ${new Date(data.sys.sunset * 1000).toLocaleTimeString()}`;
+            weatherInfo.innerText = `Temperature: ${data.main.temp}°C | Humidity: ${data.main.humidity}%`;
+        })
+        .catch(error => {
+            weatherInfo.innerText = "Failed to load weather data.";
+            console.error("Error fetching weather data:", error);
+        });
 
-            // Fetch Weather Data from OpenWeatherMap
-            fetch("https://api.openweathermap.org/data/2.5/weather?q=Woodlands,SG&appid=fc9e1c7e12a9c55818835123c36da39a&units=metric")
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("sunrise").innerText = `Sunrise: ${new Date(data.sys.sunrise * 1000).toLocaleTimeString()}`;
-                    document.getElementById("sunset").innerText = `Sunset: ${new Date(data.sys.sunset * 1000).toLocaleTimeString()}`;
-                    weatherInfo.innerText = `Temperature: ${data.main.temp}°C | Humidity: ${data.main.humidity}%`;
-                })
-                .catch(error => console.error("Error fetching weather data:", error));
-
-            // Update Last Updated Time
-            lastUpdated.innerText = `Last updated: ${new Date().toLocaleTimeString()}`;
-        }
-    </script>
-</body> 
-</html>
+    // Update Last Updated Time
+    lastUpdated.innerText = `Last updated: ${new Date().toLocaleTimeString()}`;
+}
