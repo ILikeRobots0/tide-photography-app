@@ -56,7 +56,7 @@ function fetchData() {
             const windSpeed = data?.hourly?.wind_speed_10m?.[0] ?? "N/A";  // Fetching 10m wind speed
             const cloudCover = data?.hourly?.cloud_cover?.[0] ?? "N/A";
 
-            document.getElementById("visibility").innerText = `Visibility: ${visibility} km`;
+            document.getElementById("visibility").innerText = `Visibility: ${visibility} m`;
             document.getElementById("wind-speed").innerText = `Wind Speed (10m): ${windSpeed} km/h`;  // Displaying 10m wind speed
             document.getElementById("cloud-cover").innerText = `Cloud Cover: ${cloudCover}%`;
         })
