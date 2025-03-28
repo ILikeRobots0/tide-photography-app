@@ -109,7 +109,8 @@ hr {
     font-size: 18px;
     color: #444;
     background: #ffffff;
-    padding: 10px 15px;
+    padding: 8px 12px;
+    margin: 5px 0;
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     width: 80%;
@@ -117,13 +118,13 @@ hr {
     text-align: center;
 }
 
-/* Different Background for Important Stats */
+/* Different Background for other stats */
 #wave-height { background: #a8d5f2; }  /* Light Blue */
 #sea-temp { background: #f2c6a8; }    /* Light Orange */
-#visibility { background: #a8f2b8; }  /* Light Green */
-#wind-speed { background: #f2e6a8; }  /* Light Yellow */
-#cloud-cover { background: #d6a8f2; } /* Light Purple */
-#sunrise, #sunset { background: #f2a8a8; } /* Light Red */
+#visibility { background: #d4d4d4; }  /* Light Gray */
+#wind-speed { background: #a8d5f2; }  /* Light Blue */
+#cloud-cover { background: #e6ecf0; } /* Light Bluish Gray */
+#sunrise, #sunset { background: #fffbad; } /* Light Yellow */
 
 /* Style Information Paragraphs */
 p {
