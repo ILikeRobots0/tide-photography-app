@@ -9,6 +9,7 @@ header {
     left: 0;  
     text-align: center;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensure it stays on top */
 }
 
 h1 {
@@ -55,20 +56,24 @@ body {
     font-size: 18px;
     font-weight: bold;
     color: #57c365;
-    margin-top: -10px;
+    margin-top: 15px;
     margin-bottom: 10px;
     background: #a1e2ed;
     border-radius: 10px;
+    padding: 5px 10px; /* Add some padding */
+    display: inline-block; /* Ensure it doesn't stretch */
     font-family: 'Croissant One', cursive;
+    position: relative;
+    top: 10px; /* Adjusted so it’s not too high */
 }
 
 /* Horizontal line styling */
 hr {
-    border: none;
     height: 2px;
     background-color: #ddd;
     width: 80%;
     margin: 10px auto;
+    display: block; /* Ensure it appears */
 }
 
 /* Left Section */
@@ -100,23 +105,10 @@ hr {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px; /* Reduced gap to make spacing smaller */
     margin-top: 15px;
 }
 
-/* Style for Individual Data Boxes */
-.data-section p {
-    font-size: 18px;
-    color: #444;
-    background: #ffffff;
-    padding: 8px 12px;
-    margin: 5px 0;
-    border-radius: 8px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 300px;
-    text-align: center;
-}
 
 /* Different Background for other stats */
 #wave-height { background: #a8d5f2; }  /* Light Blue */
@@ -131,10 +123,25 @@ p {
     font-size: 18px;
     color: #555;
     background: white;
-    padding: 10px;
+    padding: 8px; /* Reduced padding to make spacing smaller */
     border-radius: 8px;
     display: inline-block;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 5px 0; /* Adjusted spacing */
+}
+
+/* Style for Individual Data Boxes */
+.data-section p {
+    font-size: 18px; /* Slightly smaller font */
+    color: #444;
+    background: #ffffff;
+    padding: 6px 10px; /* Reduced padding */
+    margin: 5px 0; /* Reduced margin */
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
 }
 
 /* Refresh Button */
