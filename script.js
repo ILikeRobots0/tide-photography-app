@@ -5,33 +5,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Function to fetch both tide and weather data
 function fetchData() {
-    // Get elements safely
     const tideInfo = document.getElementById("tide-info");
     const weatherInfo = document.getElementById("weather-info");
     const lastUpdated = document.getElementById("last-updated");
 
-    // Check if elements exist before modifying them
     if (!tideInfo || !weatherInfo || !lastUpdated) {
         console.error("One or more elements are missing in the HTML!");
-        return; // Stop function to avoid errors
+        return;
     }
 
-    // Update timestamp
     lastUpdated.innerText = "Last updated: Fetching...";
 
     // Fetch Tide Data from Open-Meteo API
     fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.438&longitude=103.7888&hourly=sea_level_height_msl&timezone=Asia%2FSingapore")
-        .then(response => {
-            if (!response.ok) throw new Error(`Tide API Error: ${response.status}`);
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log("Tide Data:", data); // Debugging
-            if (data?.hourly?.sea_level_height_msl) {
-                tideInfo.innerText = `Tide Level: ${data.hourly.sea_level_height_msl[0]} meters`;
-            } else {
-                tideInfo.innerText = "Tide data unavailable.";
-            }
+            console.log("Tide Data:", data);
+            tideInfo.innerText = `Tide Level: ${data.hourly?.sea_level_height_msl?.[0] ?? "N/A"} meters`;
         })
         .catch(error => {
             tideInfo.innerText = "Failed to load tide data.";
@@ -40,14 +30,11 @@ function fetchData() {
 
     // Fetch Ocean Stats from Open-Meteo
     fetch("https://marine-api.open-meteo.com/v1/marine?latitude=1.4381&longitude=103.7864&hourly=wave_height,water_temperature,visibility,wind_speed,cloud_cover&timezone=Asia/Singapore")
-        .then(response => {
-            if (!response.ok) throw new Error(`Ocean API Error: ${response.status}`);
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log("Ocean Data:", data); // Debugging
+            console.log("Ocean Data:", data); // Log API response for debugging
 
-            // Safe access to API data
+            // Check if data exists, else show "N/A"
             const waveHeight = data?.hourly?.wave_height?.[0] ?? "N/A";
             const seaTemp = data?.hourly?.water_temperature?.[0] ?? "N/A";
             const visibility = data?.hourly?.visibility?.[0] ?? "N/A";
@@ -67,12 +54,9 @@ function fetchData() {
 
     // Fetch Weather Data from OpenWeatherMap
     fetch("https://api.openweathermap.org/data/2.5/weather?q=Woodlands,SG&appid=fc9e1c7e12a9c55818835123c36da39a&units=metric")
-        .then(response => {
-            if (!response.ok) throw new Error(`Weather API Error: ${response.status}`);
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            console.log("Weather Data:", data); // Debugging
+            console.log("Weather Data:", data); // Log API response for debugging
 
             document.getElementById("sunrise").innerText = `Sunrise: ${new Date(data.sys.sunrise * 1000).toLocaleTimeString()}`;
             document.getElementById("sunset").innerText = `Sunset: ${new Date(data.sys.sunset * 1000).toLocaleTimeString()}`;
@@ -83,6 +67,5 @@ function fetchData() {
             console.error("Error fetching weather data:", error);
         });
 
-    // Update Last Updated Time
     lastUpdated.innerText = `Last updated: ${new Date().toLocaleTimeString()}`;
 }
